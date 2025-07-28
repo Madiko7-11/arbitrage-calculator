@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: arbitrage-backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    plan: free
+    rootDir: server
+
+  - type: web
+    name: arbitrage-frontend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: serve -s build
+    plan: free
+    rootDir: client
